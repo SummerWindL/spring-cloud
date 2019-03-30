@@ -246,3 +246,11 @@ public AccessFilter accessFilter() {
 * 实现了断路器，不会因为具体微服务的故障⽽导致服务⽹关的阻塞，依然可以对外服务。
 
 感谢 ： http://blog.didispace.com/springcloud5/
+
+[Spring Cloud源码分析（四）Zuul：核⼼过滤器](http://martinfowler.com/bliki/CircuitBreaker.html)</br>
+
+[Spring Cloud实战⼩贴⼠：Zuul统⼀异常处理（⼀）](http://blog.didispace.com/spring-cloud-zuul-exception/)</br>
+
+[Spring Cloud实战⼩贴⼠：Zuul统⼀异常处理（⼆）](http://blog.didispace.com/spring-cloud-zuul-exception-2/)</br>
+
+[Spring Cloud实战⼩贴⼠：Zuul处理Cookie和重定向](http://blog.didispace.com/spring-cloud-zuul-cookie-redirect/)</br>
