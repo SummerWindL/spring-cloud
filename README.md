@@ -254,3 +254,57 @@ public AccessFilter accessFilter() {
 [Spring Cloud实战⼩贴⼠：Zuul统⼀异常处理（⼆）](http://blog.didispace.com/spring-cloud-zuul-exception-2/)</br>
 
 [Spring Cloud实战⼩贴⼠：Zuul处理Cookie和重定向](http://blog.didispace.com/spring-cloud-zuul-cookie-redirect/)</br>
+
+
+## 6.⾼可⽤服务注册中⼼
+
+修改本项目根节点（本项目跟节点就是一个服务注册中心应用）application-peer1、application-peer2配置文件，具体配置如下：
+
+* spring.application.name=eureka-server
+server.port=1111
+eureka.instance.hostname=peer1
+eureka.client.serviceUrl.defaultZone=http://peer2:1112/eureka/
+
+* spring.application.name=eureka-server
+server.port=1112
+eureka.instance.hostname=peer2
+eureka.client.serviceUrl.defaultZone=http://peer1:1111/eureka/
+
+以上实现注册中心双向注册，接下来就是将我们的微服务注册到服务中心集群：
+
+>1.我这边将这个服务在idea中打包成jar文件，放到linux上运行，运行命令如下
+>在此之前需要修改hosts文件：```127.0.0.1 peer1``` ```127.0.0.1 peer2```
+
+
+* java -jar eureka-server-1.0.0.jar --spring.profiles.active=peer1
+* java -jar eureka-server-1.0.0.jar --spring.profiles.active=peer2
+
+此时访问peer1的注册中⼼： http://localhost:1111/ ，如下图所示，我们可以看
+到 registered-replicas 中已经有peer2节点的eureka-server了。同样地，访问peer2的注册中
+⼼： http://localhost:1112/ ，能看到 registered-replicas 中已经有peer1节点，并且这些
+节点在可⽤分⽚（available-replicase）之中。我们也可以尝试关闭peer1，刷
+新 http://localhost:1112/ ，可以看到peer1的节点变为了不可⽤分⽚（unavailable-replicas)
+
+![peer1](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High Availability Service Registry/peer1.png)
+
+
+![peer2](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High Availability Service Registry/peer2.png)
+
+>2.之后我将eureka-client模块的配置文件修改为：
+>```spring.application.name=compute-service
+server.port=2222
+eureka.client.serviceUrl.defaultZone=http://peer1:1111/eureka/,http://peer2:1112/eureka/
+```
+
+主要是```eureka.client.serviceUrl.defaultZone```改了，然后将该模块打包，放到linux运行发现其注册到了pee1，pee2.
+
+![regist1](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High Availability Service Registry/pee1-regist2222)
+
+![regist2](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High Availability Service Registry/pee2-regist2222)
+
+但是关闭pee2之后，pee1报连接断开
+
+![pee2-shutdown](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High Availability Service Registry/pee2-shutdown)
+
+![pee2-shutdown](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High Availability Service Registry/pee1-error)
+
