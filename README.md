@@ -297,13 +297,13 @@ eureka.client.serviceUrl.defaultZone=http://peer1:1111/eureka/
 
 主要是 ```eureka.client.serviceUrl.defaultZone``` 改了，然后将该模块打包，放到linux运行发现其注册到了pee1，pee2.
 
-![regist1](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High-Availability-Service-Registry/pee1-regist2222)
+![regist1](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High-Availability-Service-Registry/pee1-regist2222.png)
 
-![regist2](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High-Availability-Service-Registry/pee2-regist2222)
+![regist2](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High-Availability-Service-Registry/pee2-regist2222.png)
 
 但是关闭pee2之后，pee1报连接断开
 
-![pee2-shutdown](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High-Availability-Service-Registry/pee2-shutdown)
+![pee2-shutdown](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High-Availability-Service-Registry/pee2-shutdown.png)
 
-![pee2-shutdown](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High-Availability-Service-Registry/pee1-error)
+![pee2-shutdown](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High-Availability-Service-Registry/pee1-error.png)
 
