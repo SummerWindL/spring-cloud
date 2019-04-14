@@ -291,12 +291,11 @@ eureka.client.serviceUrl.defaultZone=http://peer1:1111/eureka/
 ![peer2](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High-Availability-Service-Registry/peer2.png)
 
 >2.之后我将eureka-client模块的配置文件修改为：
->```spring.application.name=compute-service
-server.port=2222
-eureka.client.serviceUrl.defaultZone=http://peer1:1111/eureka/,http://peer2:1112/eureka/
-```
+>spring.application.name=compute-service
+>server.port=2222
+>eureka.client.serviceUrl.defaultZone=http://peer1:1111/>eureka/,http://peer2:1112/eureka/
 
-主要是```eureka.client.serviceUrl.defaultZone```改了，然后将该模块打包，放到linux运行发现其注册到了pee1，pee2.
+主要是 ```eureka.client.serviceUrl.defaultZone``` 改了，然后将该模块打包，放到linux运行发现其注册到了pee1，pee2.
 
 ![regist1](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High-Availability-Service-Registry/pee1-regist2222)
 
