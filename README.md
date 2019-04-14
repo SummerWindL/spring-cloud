@@ -285,10 +285,10 @@ eureka.client.serviceUrl.defaultZone=http://peer1:1111/eureka/
 节点在可⽤分⽚（available-replicase）之中。我们也可以尝试关闭peer1，刷
 新 http://localhost:1112/ ，可以看到peer1的节点变为了不可⽤分⽚（unavailable-replicas)
 
-![peer1](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High Availability Service Registry/peer1.png)
+![peer1](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High-Availability-Service-Registry/peer1.png)
 
 
-![peer2](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High Availability Service Registry/peer2.png)
+![peer2](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High-Availability-Service-Registry/peer2.png)
 
 >2.之后我将eureka-client模块的配置文件修改为：
 >```spring.application.name=compute-service
@@ -298,13 +298,13 @@ eureka.client.serviceUrl.defaultZone=http://peer1:1111/eureka/,http://peer2:1112
 
 主要是```eureka.client.serviceUrl.defaultZone```改了，然后将该模块打包，放到linux运行发现其注册到了pee1，pee2.
 
-![regist1](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High Availability Service Registry/pee1-regist2222)
+![regist1](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High-Availability-Service-Registry/pee1-regist2222)
 
-![regist2](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High Availability Service Registry/pee2-regist2222)
+![regist2](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High-Availability-Service-Registry/pee2-regist2222)
 
 但是关闭pee2之后，pee1报连接断开
 
-![pee2-shutdown](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High Availability Service Registry/pee2-shutdown)
+![pee2-shutdown](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High-Availability-Service-Registry/pee2-shutdown)
 
-![pee2-shutdown](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High Availability Service Registry/pee1-error)
+![pee2-shutdown](https://github.com/SummerWindL/imgrepository/blob/master/spring-cloud/High-Availability-Service-Registry/pee1-error)
 
